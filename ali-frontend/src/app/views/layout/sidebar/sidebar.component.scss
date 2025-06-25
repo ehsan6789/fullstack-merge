@@ -1,0 +1,167 @@
+/* General container for the sidebar/navigation */
+.container {
+    background-color: #f8f8f8; /* Light background similar to the image */
+    border-radius: 20px; /* Rounded corners for the entire sidebar */
+    padding: 20px;
+    width: 250px; /* Adjust width as needed */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+    font-family: Arial, sans-serif; /* A clean, modern font */
+  
+}
+
+/* Styling for individual navigation links */
+.nav-link-ref {
+    display: flex; /* Aligns icon and text horizontally */
+    align-items: center; /* Vertically centers icon and text */
+    padding: 12px 15px; /* Padding inside each link */
+    margin-bottom: 8px; /* Space between links */
+    text-decoration: none; /* Remove underline from links */
+    color: #333; /* Darker text color for inactive links */
+    border-radius: 10px; /* Slightly rounded corners for each link */
+    transition: background-color 0.2s ease, color 0.2s ease; /* Smooth transition on hover/active */
+}
+
+/* Icon styling */
+.link-icon {
+    margin-right: 15px; /* Space between icon and text */
+    font-size: 20px; /* Adjust icon size */
+    color: #777; /* Default icon color */
+    display: flex; /* Ensure icon is treated as a flex item */
+    align-items: center; /* Vertically center icon */
+    justify-content: center; /* Horizontally center icon if it's a font icon */
+    width: 24px; /* Fixed width for icons to ensure alignment */
+    height: 24px; /* Fixed height for icons */
+}
+
+/* Text styling for link titles */
+.link-title {
+    font-size: 16px; /* Font size for link text */
+    font-weight: 500; /* Medium font weight */
+}
+
+/* Hover state for navigation links */
+.nav-link-ref:hover {
+    background-color: #eee; /* Light background on hover */
+    color: #000; /* Darker text on hover */
+}
+
+/* Active state for navigation links (similar to "Revenue" in the image) */
+.nav-link-ref.active {
+    background-color: #6a0dad; /* Primary purple color from the image */
+    color: #fff; /* White text for active link */
+    font-weight: 600; /* Bolder text for active link */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for active link */
+}
+
+.nav-link-ref.active .link-icon {
+    color: #fff; /* White icon for active link */
+}
+
+/* Specific styling for the top "Codinglab" section (if you want to implement it) */
+.codinglab-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px; /* Space below the header */
+    padding-bottom: 20px; /* Padding at the bottom of the header */
+    border-bottom: 1px solid #eee; /* Separator line */
+}
+
+.codinglab-logo {
+    background-color: #6a0dad; /* Purple background for the logo */
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 18px;
+    margin-right: 15px;
+}
+
+.codinglab-info h3 {
+    margin: 0;
+    font-size: 18px;
+    color: #333;
+}
+
+.codinglab-info p {
+    margin: 0;
+    font-size: 14px;
+    color: #777;
+}
+
+/* Search bar styling (if you want to implement it) */
+.search-bar {
+    display: flex;
+    align-items: center;
+    background-color: #f0f0f0; /* Light background for search bar */
+    border-radius: 10px;
+    padding: 8px 15px;
+    margin-bottom: 25px; /* Space below search bar */
+}
+
+.search-bar input {
+    border: none;
+    background: transparent;
+    outline: none;
+    flex-grow: 1;
+    padding: 5px;
+    font-size: 15px;
+    color: #333;
+}
+
+.search-bar input::placeholder {
+    color: #aaa;
+}
+
+.search-bar .search-icon {
+    color: #777;
+    font-size: 18px;
+    margin-right: 10px;
+}
+/* sidebar.component.scss */
+
+.container {
+    width: 250px;
+    background-color: #fff;
+    padding: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .nav-link {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    color: #495057;
+    text-decoration: none;
+    border-left: 4px solid transparent;
+    transition: all 0.2s ease-in-out;
+    font-weight: 500;
+    border-radius: 4px 0 0 4px;
+  }
+
+  .nav-link:hover {
+    background-color: #f8f9fa;
+    color: #0d6efd !important;
+  }
+
+  .nav-link.active {
+    background-color: #e9ecef;
+    font-weight: 600;
+    border-left: 4px solid #0d6efd;
+    color: #0d6efd !important;
+  }
+
+  .link-icon {
+    margin-right: 12px;
+    stroke: currentColor;
+    width: 20px;
+    height: 20px;
+  }
+
+  .link-title {
+    font-size: 16px;
+  }
+

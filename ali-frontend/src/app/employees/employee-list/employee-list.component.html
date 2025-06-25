@@ -1,0 +1,237 @@
+ <!-- <!-- <div class="container mt-4">
+    <button class="btn btn-primary mb-3" (click)="createEmployee()">+ Add Employee</button>
+    <table class="table table-bordered table-hover">
+      <thead class="table-dark">
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Department</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let emp of employees">
+          <td>{{ emp.name }}</td>
+          <td>{{ emp.email }}</td>
+          <td>{{ emp.phoneNo }}</td>
+          <td>{{ emp.departmentName }}</td>
+          <td>{{ emp.status }}</td>
+          <td>
+            <button class="btn btn-sm btn-info" (click)="editEmployee(emp.id!)"> <i class="bi bi-pencil-square"></i></button>
+            <button class="btn btn-sm btn-danger" (click)="deleteEmployee(emp.id!)">  <i class="bi bi-trash"></i></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>  -->
+
+ 
+  
+  <!-- <div class="container py-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h2 class="fw-bold text-white mb-0">
+        <i class="bi bi-people-fill text-primary me-2"></i> Employee Management
+      </h2>
+      <button class="btn btn-primary px-4" (click)="createEmployee()">
+        <i class="bi bi-plus-circle me-1"></i> Add Employee
+      </button>
+    </div>
+  
+    <div class="card shadow-sm border-0 rounded-4">
+      <div class="card-body p-0">
+        <div class="table-responsive">
+          <table class="table table-hover mb-0 align-middle">
+            <thead style="background-color: #343a40;" class="text-white text-uppercase small">
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Department</th>
+                <th>Status</th>
+                <th class="text-end">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let emp of paginatedEmployees">
+                <td><strong>{{ emp.name }}</strong></td>
+                <td>{{ emp.email }}</td>
+                <td>{{ emp.phoneNo }}</td>
+                <td>{{ emp.departmentName }}</td>
+                <td>
+                  <span
+                    class="status-pill"
+                    [ngClass]="{
+                      'pill-active': emp.status === 'Active',
+                      'pill-inactive': emp.status === 'Inactive',
+                      'pill-resigned': emp.status === 'Resigned',
+                      'pill-terminated': emp.status === 'Terminated'
+                    }"
+                  >
+                    <i
+                      [ngClass]="{
+                        'bi bi-check-circle-fill': emp.status === 'Active',
+                        'bi bi-slash-circle-fill': emp.status === 'Inactive',
+                        'bi bi-person-dash-fill': emp.status === 'Resigned',
+                        'bi bi-x-circle-fill': emp.status === 'Terminated'
+                      }"
+                    ></i>
+                    {{ emp.status }}
+                  </span>
+                </td>
+                <td class="text-end">
+                  <button class="btn btn-sm btn-outline-primary me-2" (click)="editEmployee(emp.id!)">
+                    <i class="bi bi-pencil-square"></i>
+                  </button>
+                  <button class="btn btn-sm btn-outline-danger" (click)="deleteEmployee(emp.id!)">
+                    <i class="bi bi-trash"></i>
+                  </button>
+                </td>
+              </tr>
+  
+              <tr *ngIf="paginatedEmployees.length === 0">
+                <td colspan="6" class="text-center py-4 text-muted">
+                  <i class="bi bi-person-x fs-4 d-block mb-2"></i>
+                  No employees found.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  
+    <div class="pagination-controls">
+      <button class="btn btn-outline-secondary" [disabled]="currentPage === 1" (click)="prevPage()">
+        <i class="bi bi-chevron-left me-1"></i> Previous
+      </button>
+      <button class="btn btn-outline-secondary" [disabled]="!hasMorePages()" (click)="nextPage()">
+        Next <i class="bi bi-chevron-right ms-1"></i>
+      </button>
+    </div>
+  </div>
+   -->
+   <div class="card shadow-lg rounded-4 p-4 mt-4 border-0">
+    <!-- Header and Add Employee Button -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h4 class="text-primary fw-bold m-0">
+        <i class="bi bi-people-fill me-2"></i> Employee Management
+      </h4>
+      <button 
+      class="btn d-flex align-items-center gap-2 px-4 py-2 rounded-pill shadow-sm text-white fw-semibold" 
+      style="background: linear-gradient(135deg, #4e54c8, #8f94fb); border: none;" 
+      (click)="createEmployee()">
+      <i class="bi bi-plus-circle fs-5"></i> Add Employee
+    </button>
+    
+    </div>
+  
+    <!-- Filters Row: Search (Left), Status (Center), CSV (Right) -->
+    <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-3">
+      <!-- Search (Left) -->
+      <div class="flex-grow-1">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Search employee..."
+          [(ngModel)]="searchTerm"
+          (ngModelChange)="currentPage = 1"
+          style="min-width: 20px;"
+        />
+      </div>
+  
+      <!-- Status Filter (Center) -->
+      <div class="mx-auto">
+        <select
+          class="form-select"
+          [(ngModel)]="statusFilter"
+          (change)="currentPage = 1"
+          style="min-width: 180px;"
+        >
+          <option value="">All Status</option>
+          <option>Active</option>
+          <option>Inactive</option>
+          <option>Resigned</option>
+          <option>Terminated</option>
+        </select>
+      </div>
+  
+      <!-- Export CSV (Right) -->
+      <div>
+        <button class="btn btn-outline-success" (click)="exportToCSV()">
+          <i class="bi bi-file-earmark-spreadsheet me-1"></i> Export CSV
+        </button>
+      </div>
+    </div>
+  
+    <!-- Employee Table -->
+    <div class="table-responsive">
+      <table class="table table-hover table-striped table-bordered align-middle text-center">
+        <thead class="table-dark text-white text-uppercase small">
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Department</th>
+            <th>Status</th>
+            <th class="text-end">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let emp of paginatedEmployees">
+            <td class="fw-semibold text-capitalize">{{ emp.name }}</td>
+            <td>{{ emp.email }}</td>
+            <td>{{ emp.phoneNo }}</td>
+            <td>{{ emp.departmentName }}</td>
+            <td>
+              <span
+                class="badge px-3 py-2"
+                [ngClass]="{
+                  'bg-success': emp.status === 'Active',
+                  'bg-secondary': emp.status === 'Inactive',
+                  'bg-warning text-dark': emp.status === 'Resigned',
+                  'bg-danger': emp.status === 'Terminated'
+                }"
+              >
+                {{ emp.status }}
+              </span>
+            </td>
+            <td class="text-end">
+              <button class="btn btn-sm btn-outline-primary me-2" (click)="editEmployee(emp.id!)" title="Edit">
+                <i class="bi bi-pencil-square"></i>
+              </button>
+              <button class="btn btn-sm btn-outline-danger" (click)="deleteEmployee(emp.id!)" title="Delete">
+                <i class="bi bi-trash3"></i>
+              </button>
+            </td>
+          </tr>
+  
+          <tr *ngIf="paginatedEmployees.length === 0">
+            <td colspan="6" class="text-center text-muted py-4">
+              <i class="bi bi-person-x fs-4 d-block mb-2"></i>
+              No employees found.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <!-- Pagination -->
+    <div class="d-flex justify-content-between align-items-center mt-3">
+      <div class="text-muted">
+        Showing {{ (currentPage - 1) * pageSize + 1 }}–
+        {{ Math.min(currentPage * pageSize, filteredEmployees.length) }} of
+        {{ filteredEmployees.length }} employees
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-outline-secondary" [disabled]="currentPage === 1" (click)="prevPage()">
+          <i class="bi bi-chevron-left"></i> Previous
+        </button>
+        <button class="btn btn-outline-secondary" [disabled]="!hasMorePages()" (click)="nextPage()">
+          Next <i class="bi bi-chevron-right"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+   
