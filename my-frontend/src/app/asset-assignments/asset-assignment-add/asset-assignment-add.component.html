@@ -1,0 +1,56 @@
+<div class="card-style">
+  <h4 class="text-primary fw-bold mb-4">Add New Asset</h4>
+
+  <form [formGroup]="assetForm" (ngSubmit)="onSubmit()">
+    <div class="row g-4">
+      <!-- Category -->
+      <div class="col-md-6">
+        <label for="categoryId" class="form-label">Category *</label>
+        <select id="categoryId" formControlName="categoryId" class="form-control form-control-custom">
+          <option value="">-- Select Category --</option>
+          <option *ngFor="let cat of categories" [value]="cat.id">{{ cat.name }}</option>
+        </select>
+        <div *ngIf="assetForm.get('categoryId')?.invalid && assetForm.get('categoryId')?.touched" class="text-danger">
+          Category is required.
+        </div>
+      </div>
+
+      <!-- Name -->
+      <div class="col-md-6">
+        <label for="name" class="form-label">Asset Name *</label>
+        <input id="name" type="text" formControlName="name" class="form-control form-control-custom" />
+        <div *ngIf="assetForm.get('name')?.invalid && assetForm.get('name')?.touched" class="text-danger">
+          Name is required.
+        </div>
+      </div>
+
+      <!-- Serial Number -->
+      <div class="col-md-6">
+        <label for="serialNumber" class="form-label">Serial Number</label>
+        <input id="serialNumber" type="text" formControlName="serialNumber" class="form-control form-control-custom" />
+      </div>
+
+      <!-- Purchase Date -->
+      <div class="col-md-6">
+        <label for="purchaseDate" class="form-label">Purchase Date *</label>
+        <input id="purchaseDate" type="date" formControlName="purchaseDate" class="form-control form-control-custom" />
+        <div *ngIf="assetForm.get('purchaseDate')?.invalid && assetForm.get('purchaseDate')?.touched" class="text-danger">
+          Purchase Date is required.
+        </div>
+      </div>
+
+      <!-- IsActive Checkbox -->
+      <div class="col-md-6 d-flex align-items-center mt-2">
+        <input id="isActive" type="checkbox" formControlName="isActive" class="form-check-input me-2" />
+        <label for="isActive" class="form-check-label">Active</label>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="col-12 text-end mt-4">
+        <button [disabled]="isSubmitting" class="btn btn-primary px-4" type="submit">
+          {{ isSubmitting ? 'Saving...' : 'Save Asset' }}
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

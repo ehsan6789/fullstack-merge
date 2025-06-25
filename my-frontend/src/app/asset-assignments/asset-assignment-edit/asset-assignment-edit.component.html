@@ -1,0 +1,59 @@
+<div class="card-style">
+  <h5 class="mb-3">Edit Asset Assignment</h5>
+
+  <form (ngSubmit)="onSubmit()" #editForm="ngForm" novalidate>
+    <div class="mb-3">
+      <label for="assetId" class="form-label">Asset ID</label>
+      <input
+        type="number"
+        id="assetId"
+        name="assetId"
+        class="form-control-custom"
+        [(ngModel)]="assignment.assetId"
+        required
+        min="1"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="assignedTo" class="form-label">Assigned To</label>
+      <input
+        type="text"
+        id="assignedTo"
+        name="assignedTo"
+        class="form-control-custom"
+        [(ngModel)]="assignment.assignedToUserId"
+        required
+        minlength="2"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="assignedDate" class="form-label">Assigned Date</label>
+      <input
+        type="date"
+        id="assignedDate"
+        name="assignedDate"
+        class="form-control-custom"
+        [(ngModel)]="assignment.assignedDate"
+        required
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="returnDate" class="form-label">Return Date</label>
+      <input
+        type="date"
+        id="returnDate"
+        name="returnDate"
+        class="form-control-custom"
+        [(ngModel)]="assignment.returnDate"
+      />
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="editForm.invalid">Update</button>
+    <button type="button" class="btn btn-secondary ms-2" (click)="cancel()">Cancel</button>
+  </form>
+</div>
+
+

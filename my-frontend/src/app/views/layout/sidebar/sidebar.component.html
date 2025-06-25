@@ -1,0 +1,183 @@
+<nav class="sidebar">
+  <div class="sidebar-header">
+
+    <!--- Logo -->
+    <a routerLink="/" class="sidebar-brand nobleui-logo">
+      Noble<span>UI</span>
+    </a>
+
+    <!-- <a routerLink="/" class="sidebar-brand nobleui-logo">
+      <img src="assets/images/logo.png" alt="logo">
+    </a> -->
+
+    <!--- Toggler -->
+    <div class="sidebar-toggler not-active" #sidebarToggler (click)="toggleSidebar($event)">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+  </div>
+  <div class="sidebar-body" (mouseenter)="operSidebarFolded()" (mouseleave)="closeSidebarFolded()" [perfectScrollbar]>
+
+    <!--- Sidemenu start -->
+    <!-- <ul class="sidebar-nav metismenu" id="sidebar-menu" #sidebarMenu> -->
+
+      <!-- Dashboard -->
+      <!-- <li class="nav-item">
+    <a class="nav-link nav-link-ref" routerLink="/dashboard" routerLinkActive="active">
+      <i class="link-icon" data-feather="home" appFeatherIcon></i>
+      <span class="link-title">Dashboard</span>
+    </a>
+  </li> -->
+      <!-- <li class="nav-item">
+  <a 
+    class="nav-link d-flex align-items-center px-3 py-2" 
+    routerLink="/dashboard" 
+    routerLinkActive="active"
+  >
+    <i class="link-icon me-2" data-feather="home" appFeatherIcon></i>
+    <span class="link-title">Dashboard</span>
+  </a>
+</li>
+
+  <!-- View Users -->
+      <!-- <li class="nav-item">
+    <a class="nav-link nav-link-ref" routerLink="/users" routerLinkActive="active">
+      <i class="link-icon" data-feather="users" appFeatherIcon></i>
+      <span class="link-title">View Users</span>
+    </a>
+  </li> -->
+      <!-- <li class="nav-item">
+  <a 
+    class="nav-link d-flex align-items-center px-3 py-2" 
+    routerLink="/users" 
+    routerLinkActive="active"
+  >
+    <i class="link-icon me-2" data-feather="users" appFeatherIcon></i>
+    <span class="link-title">View Users</span>
+  </a>
+</li> -->
+      <!-- <li class="nav-item mb-2">
+        <a 
+          class="nav-link d-flex align-items-center px-3 py-2 rounded text-dark"
+          routerLink="/dashboard" 
+          routerLinkActive="active"
+        >
+          <i class="bi bi-house-door-fill me-2 fs-5 text-primary"></i>
+          <span class="fw-medium">Dashboard</span>
+        </a>
+      </li> -->
+
+      <!-- View Users -->
+      <!-- <li class="nav-item mb-2">
+        <a 
+          class="nav-link d-flex align-items-center px-3 py-2 rounded text-dark"
+          routerLink="/users" 
+          routerLinkActive="active"
+        >
+          <i class="bi bi-people-fill me-2 fs-5 text-primary"></i>
+          <span class="fw-medium">View Management</span>
+        </a>
+      </li> -->
+
+    <!-- </ul> -->
+
+
+  <ul class="sidebar-nav metismenu" id="sidebar-menu" #sidebarMenu>
+  <ng-container *ngFor="let item of menuItems">
+
+    <!-- Section title -->
+    <li class="nav-item nav-category" *ngIf="item.isTitle">
+      {{ item.label }}
+    </li>
+
+    <!-- Menu Item -->
+    <li class="nav-item" *ngIf="!item.isTitle">
+
+      <!-- With Submenu -->
+      <a class="nav-link d-flex align-items-center gap-2" *ngIf="hasItems(item)" href="javascript:void(0);">
+        <i [attr.data-feather]="item.icon" appFeatherIcon></i>
+        <span>{{ item.label }}</span>
+        <i data-feather="chevron-down" class="ms-auto" appFeatherIcon></i>
+      </a>
+
+      <!-- Without Submenu -->
+      <a class="nav-link d-flex align-items-center gap-2" *ngIf="!hasItems(item)" [routerLink]="item.link" routerLinkActive="active">
+        <i [attr.data-feather]="item.icon" appFeatherIcon></i>
+        <span>{{ item.label }}</span>
+        <span class="badge bg-{{item.badge?.variant}} ms-auto" *ngIf="item.badge">{{ item.badge.text }}</span>
+      </a>
+
+      <!-- Level 2 -->
+      <ul class="sidebar-nav sub-menu" *ngIf="hasItems(item)">
+        <li *ngFor="let subItem of item.subItems" class="nav-item">
+          <a class="nav-link d-flex align-items-center gap-2" *ngIf="!hasItems(subItem)" [routerLink]="subItem.link">
+            <i [attr.data-feather]="subItem.icon" appFeatherIcon></i>
+            <span>{{ subItem.label }}</span>
+          </a>
+
+          <!-- Level 3 -->
+          <a class="nav-link d-flex align-items-center gap-2" *ngIf="hasItems(subItem)" href="javascript:void(0);">
+            <i [attr.data-feather]="subItem.icon" appFeatherIcon></i>
+            <span>{{ subItem.label }}</span>
+            <i data-feather="chevron-down" class="ms-auto" appFeatherIcon></i>
+          </a>
+
+          <ul class="sidebar-nav sub-menu" *ngIf="hasItems(subItem)">
+            <li *ngFor="let subSubItem of subItem.subItems" class="nav-item">
+              <a class="nav-link d-flex align-items-center gap-2" [routerLink]="subSubItem.link">
+                <i [attr.data-feather]="subSubItem.icon" appFeatherIcon></i>
+                <span>{{ subSubItem.label }}</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ng-container>
+</ul>
+
+
+
+
+    <!--- Sidemenu end -->
+
+  </div>
+</nav>
+<nav class="settings-sidebar">
+  <div class="sidebar-body">
+    <a href="" class="settings-sidebar-toggler" (click)="toggleSettingsSidebar($event)">
+      <i class="icon feather icon-settings"></i>
+    </a>
+    <h6 class="text-muted mb-2">Sidebar:</h6>
+    <div class="mb-3 pb-3 border-bottom">
+      <div class="form-check form-check-inline">
+        <label class="form-check-label">
+          <input type="radio" class="form-check-input" name="sidebarThemeSettings"
+            (change)="onSidebarThemeChange($event)" id="sidebarLight" value="sidebar-light" checked>
+          <i class="input-frame"></i>
+          Light
+        </label>
+      </div>
+      <div class="form-check form-check-inline">
+        <label class="form-check-label">
+          <input type="radio" class="form-check-input" name="sidebarThemeSettings"
+            (change)="onSidebarThemeChange($event)" id="sidebarDark" value="sidebar-dark">
+          <i class="input-frame"></i>
+          Dark
+        </label>
+      </div>
+    </div>
+    <div class="theme-wrapper">
+      <h6 class="text-muted mb-2">Light Theme:</h6>
+      <a class="theme-item active" href="https://www.nobleui.com/angular/template/demo1/">
+        <img src="assets/images/screenshots/light.jpg" alt="light theme">
+      </a>
+      <h6 class="text-muted mb-2">Dark Theme:</h6>
+      <a class="theme-item" href="https://www.nobleui.com/angular/template/demo2/">
+        <img src="assets/images/screenshots/dark.jpg" alt="dark theme">
+      </a>
+    </div>
+  </div>
+</nav>

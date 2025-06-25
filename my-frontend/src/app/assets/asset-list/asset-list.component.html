@@ -1,0 +1,51 @@
+<div class="card-style">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h4 class="text-primary fw-bold m-0">Asset List</h4>
+    <button class="btn btn-primary" routerLink="/assets/add">
+      <i class="bi bi-plus-circle"></i> Add Asset
+    </button>
+  </div>
+
+  <!-- Asset Name Filter -->
+  <div class="mb-3">
+    <label for="assetFilter" class="form-label fw-bold">Filter by Asset Name:</label>
+    <input id="assetFilter" type="text" class="form-control" [(ngModel)]="assetFilterText" (input)="applyAssetFilter()"
+      placeholder="Search by asset name..." />
+  </div>
+
+  <table class="table-style">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Serial Number</th>
+        <th>Category</th>
+        <th>Status</th>
+        <th style="min-width: 150px;">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let asset of filteredAssets | paginate: { itemsPerPage: 5, currentPage: currentPage }">
+        <td>{{ asset.name }}</td>
+        <td>{{ asset.serialNumber }}</td>
+        <td>{{ asset.categoryName }}</td>
+        <td>
+          <span class="badge" [ngClass]="{
+          'bg-success': asset.status === 1,
+          'bg-danger': asset.status === 2,
+          'bg-warning text-dark': asset.status === 3
+        }">
+            {{ getStatusLabel(asset.status) }}
+          </span>
+        </td>
+        <td>
+          <i class="bi bi-pencil-square text-primary me-2 clickable-icon" (click)="editAsset(asset.id)"
+            title="Edit"></i>
+          <i class="bi bi-trash text-danger clickable-icon" (click)="deleteAsset(asset.id)" title="Delete"></i>
+
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <pagination-controls (pageChange)="currentPage = $event"
+    class="my-3 d-flex justify-content-center"></pagination-controls>
+</div>

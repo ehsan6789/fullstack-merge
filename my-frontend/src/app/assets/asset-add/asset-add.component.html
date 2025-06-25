@@ -1,0 +1,71 @@
+<div class="card-style">
+  <h4 class="text-primary fw-bold mb-4">Add New Asset</h4>
+  <form [formGroup]="assetForm" (ngSubmit)="onSubmit()">
+    <div class="row g-4">
+
+      <div class="col-md-6">
+        <label for="categoryId" class="form-label">Category *</label>
+        <select id="categoryId" formControlName="categoryId" class="form-control form-control-custom">
+          <option value="">-- Select Category --</option>
+          <option *ngFor="let cat of categories" [value]="cat.id">{{ cat.name }}</option>
+        </select>
+        <div *ngIf="assetForm.controls.categoryId.invalid && assetForm.controls.categoryId.touched" class="text-danger">
+          Category is required.
+        </div>
+      </div>
+      <!-- Asset Name -->
+      <div class="col-md-6">
+        <label for="name" class="form-label">Asset Name *</label>
+        <input id="name" type="text" formControlName="name" class="form-control form-control-custom" />
+        <div *ngIf="assetForm.controls.name.invalid && assetForm.controls.name.touched" class="text-danger">
+          Name is required.
+        </div>
+      </div>
+
+      <!-- Serial Number (optional) -->
+      <div class="col-md-6">
+        <label for="serialNumber" class="form-label">Serial Number</label>
+        <input id="serialNumber" type="text" formControlName="serialNumber" class="form-control form-control-custom" />
+
+        <div *ngIf="assetForm.get('serialNumber')?.hasError('duplicate')" class="text-danger">
+          This serial number is already in use.
+        </div>
+      </div>
+
+
+      <!-- Category Dropdown -->
+
+
+      <!-- Purchase Date -->
+      <div class="col-md-6">
+        <label for="purchaseDate" class="form-label">Purchase Date *</label>
+        <input id="purchaseDate" type="date" formControlName="purchaseDate" class="form-control form-control-custom" />
+        <div *ngIf="assetForm.controls.purchaseDate.invalid && assetForm.controls.purchaseDate.touched"
+          class="text-danger">
+          Purchase Date is required.
+        </div>
+      </div>
+      <div class="col-md-6">
+        <label for="status" class="form-label">Asset Status *</label>
+        <select id="status" formControlName="status" class="form-control">
+          <option *ngFor="let status of statusOptions" [value]="status.value">{{ status.label }}</option>
+        </select>
+      </div>
+
+
+      <!-- Active Toggle -->
+      <!-- <div class="col-md-6 d-flex align-items-center">
+        <input id="isActive" type="checkbox" formControlName="isActive" class="form-check-input me-2" />
+        <label for="isActive" class="form-check-label">Active</label>
+      </div> -->
+
+      <!-- Submit Button -->
+      <div class="col-12 text-end">
+        <button [disabled]="isSubmitting" class="btn btn-primary px-4" type="submit">
+          {{ isSubmitting ? 'Saving...' : 'Save Asset' }}
+        </button>
+      </div>
+
+    </div>
+  </form>
+</div>

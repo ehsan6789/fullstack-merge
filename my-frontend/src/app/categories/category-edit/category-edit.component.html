@@ -1,0 +1,33 @@
+<div class="card-style">
+  <h5 class="mb-3">Edit Category</h5>
+
+  <form (ngSubmit)="onSubmit()" #editCategoryForm="ngForm" novalidate>
+    <div class="mb-3">
+      <label for="name" class="form-label">Category Name</label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        class="form-control form-control-custom"
+        [(ngModel)]="category.name"
+        #name="ngModel"
+        required
+        minlength="3"
+        maxlength="50"
+      />
+      <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-danger mt-1">
+        <div *ngIf="name.errors?.required">Name is required.</div>
+        <div *ngIf="name.errors?.minlength">Minimum 3 characters.</div>
+        <div *ngIf="name.errors?.maxlength">Max 50 characters allowed.</div>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="editCategoryForm.invalid">
+      Update
+    </button>
+    <button type="button" class="btn btn-secondary ms-2" (click)="cancel()">
+      Cancel
+    </button>
+  </form>
+</div>
+

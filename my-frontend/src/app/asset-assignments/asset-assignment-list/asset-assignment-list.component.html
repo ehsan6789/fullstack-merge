@@ -1,0 +1,50 @@
+<div class="card-style">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h4 class="text-primary fw-bold m-0">Asset Assignments</h4>
+    <button class="btn btn-primary" routerLink="/asset-assignments/add">
+      <i class="bi bi-plus-circle"></i> Add Assignment
+    </button>
+  </div>
+
+  <table class="table-style">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Asset ID</th>
+        <th>Assigned To</th>
+        <th>Assigned Date</th>
+        <th>Return Date</th>
+        <th style="min-width: 150px;">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let assignment of assignments | paginate: { itemsPerPage: pageSize, currentPage: currentPage }; let i = index">
+        <td>{{ (currentPage - 1) * pageSize + i + 1 }}</td>
+        <td>{{ assignment.assetId }}</td>
+        <td>{{ assignment.assignedToUserId }}</td>
+        <td>{{ assignment.assignedDate | date: 'mediumDate' }}</td>
+        <td>{{ assignment.returnDate ? (assignment.returnDate | date: 'mediumDate') : 'N/A' }}</td>
+        <td>
+          <i class="bi bi-pencil-square text-primary me-3 clickable-icon"
+             (click)="edit(assignment.id)"
+             title="Edit Assignment"></i>
+          <i class="bi bi-trash text-danger clickable-icon"
+             (click)="delete(assignment.id)"
+             title="Delete Assignment"></i>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="assignments.length === 0" class="alert alert-warning text-center mt-3">
+    No asset assignments found.
+  </div>
+
+  <!-- Pagination Controls -->
+  <pagination-controls
+    (pageChange)="onPageChange($event)"
+    class="my-3 d-flex justify-content-center">
+  </pagination-controls>
+</div>
+
+

@@ -1,0 +1,29 @@
+<div class="card-style">
+  <h5 class="mb-3">Add New Category</h5>
+
+  <form (ngSubmit)="onSubmit()" #addCategoryForm="ngForm" novalidate>
+    <div class="mb-3">
+      <label for="name" class="form-label">Category Name</label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        [(ngModel)]="category.name"
+        class="form-control form-control-custom"
+        placeholder="Enter category name"
+        required
+        minlength="3"
+        maxlength="50"
+        #name="ngModel"
+      />
+      <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-danger mt-1">
+        <div *ngIf="name.errors?.required">Name is required.</div>
+        <div *ngIf="name.errors?.minlength">Minimum 3 characters.</div>
+        <div *ngIf="name.errors?.maxlength">Maximum 50 characters allowed.</div>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="addCategoryForm.invalid">Add Category</button>
+    <button type="button" class="btn btn-secondary ms-2" [routerLink]="['/categories']">Cancel</button>
+  </form>
+</div>

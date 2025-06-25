@@ -1,0 +1,88 @@
+<div class="card-style" *ngIf="!isLoading">
+  <h4 class="text-primary fw-bold mb-4">Edit Asset</h4>
+
+  <form [formGroup]="assetForm" (ngSubmit)="onSubmit()">
+    <div class="row g-4">
+
+      <!-- Category -->
+      <div class="col-md-6">
+        <label for="categoryId" class="form-label fw-semibold">Category *</label>
+        <select id="categoryId" formControlName="categoryId" class="form-control form-control-custom">
+          <option value="">-- Select Category --</option>
+          <option *ngFor="let cat of categories" [value]="cat.id">
+            {{ cat.name }}
+          </option>
+        </select>
+      </div>
+
+      <!-- Name -->
+      <div class="col-md-6">
+        <label for="name" class="form-label fw-semibold">Name *</label>
+        <input
+          id="name"
+          type="text"
+          formControlName="name"
+          class="form-control form-control-custom"
+          placeholder="Enter asset name"
+        />
+      </div>
+
+      <!-- Serial Number -->
+      <div class="col-md-6">
+        <label for="serialNumber" class="form-label fw-semibold">Serial Number *</label>
+        <input
+          id="serialNumber"
+          type="text"
+          formControlName="serialNumber"
+          class="form-control form-control-custom"
+          placeholder="Enter serial number"
+        />
+      </div>
+
+      <!-- Purchase Date -->
+      <div class="col-md-6">
+        <label for="purchaseDate" class="form-label fw-semibold">Purchase Date *</label>
+        <input
+          id="purchaseDate"
+          type="date"
+          formControlName="purchaseDate"
+          class="form-control form-control-custom"
+        />
+      </div>
+
+      <!-- Cost -->
+      <div class="col-md-6">
+        <label for="cost" class="form-label fw-semibold">Cost</label>
+        <input
+          id="cost"
+          type="number"
+          formControlName="cost"
+          class="form-control form-control-custom"
+          placeholder="e.g., 500"
+        />
+      </div>
+
+      <!-- Status -->
+      <div class="col-md-6">
+        <label for="status" class="form-label fw-semibold">Status *</label>
+        <select id="status" formControlName="status" class="form-control form-control-custom">
+          <option value="">-- Select Status --</option>
+          <option *ngFor="let option of statusOptions" [value]="option.value">
+            {{ option.label }}
+          </option>
+        </select>
+      </div>
+
+      
+
+      <!-- Submit Button -->
+      <div class="col-12 text-end">
+        <button type="submit" class="btn btn-primary px-4" [disabled]="isSubmitting">
+          {{ isSubmitting ? 'Updating...' : 'Update Asset' }}
+        </button>
+      </div>
+
+    </div>
+  </form>
+</div>
+

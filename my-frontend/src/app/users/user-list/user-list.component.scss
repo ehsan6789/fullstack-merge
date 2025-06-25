@@ -1,0 +1,137 @@
+// ===============================
+// Role Badge Styles
+// ===============================
+.role-badge {
+  display: inline-block;
+  min-width: 90px;
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-transform: capitalize;
+  text-align: center;
+  border-radius: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+// Role-specific badge colors
+.role-badge {
+  &.superadmin {
+    background-color: #4b0082; // Indigo
+    color: #ffffff;
+  }
+
+  &.admin {
+    background-color: #0d6efd; // Bootstrap Primary
+    color: #ffffff;
+  }
+
+  &.accounts {
+    background-color: #f0ad4e; // Soft Amber
+    color: #212529;
+  }
+
+  &.operations {
+    background-color: #198754; // Bootstrap Success
+    color: #ffffff;
+  }
+
+  &.hr {
+    background-color: #0dcaf0; // Soft Cyan
+    color: #ffffff;
+  }
+
+  &.default-role {
+    background-color: #adb5bd; // Bootstrap Secondary Gray
+    color: #212529;
+  }
+}
+
+// ===============================
+// Table Header Styling
+// ===============================
+thead th {
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background-color: #e9f0ff;
+  border-bottom: 2px solid #c3d4f2;
+}
+
+// ===============================
+// Pagination Styling (ngx-pagination)
+// ===============================
+.pagination {
+  .ngx-pagination {
+    display: flex;
+    list-style: none;
+    padding-left: 0;
+
+    li {
+      margin: 0 5px;
+
+      a {
+        padding: 6px 12px;
+        border: 1px solid #dee2e6;
+        border-radius: 4px;
+        color: #007bff;
+        text-decoration: none;
+        transition: background-color 0.2s, color 0.2s;
+
+        &:hover {
+          background-color: #007bff;
+          color: #000000;
+        }
+      }
+
+      &.current a {
+        background-color: #007bff;
+        color: #000000;
+      }
+    }
+  }
+}
+
+// ===============================
+// Bootstrap Icon Hover Effect
+// ===============================
+.bi {
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: scale(1.2);
+  }
+}
+
+// ===============================
+// Button Hover Styling
+// ===============================
+.btn-outline-primary {
+  transition: background-color 0.3s, color 0.3s;
+
+  &:hover {
+    background-color: #0d6efd;
+    color: #000000;
+  }
+}
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.edit-icon {
+  color: #007bff; // Bootstrap blue
+  transition: color 0.2s ease;
+  
+  &:hover {
+    color: #0056b3; // Slightly darker on hover
+  }
+}
+
+.delete-icon {
+  color: #dc3545; // Bootstrap red
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: #a71d2a; // Slightly darker red on hover
+  }
+}

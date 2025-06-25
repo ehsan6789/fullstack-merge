@@ -1,0 +1,70 @@
+:host {
+  display: block;
+  padding: 1.5rem;
+}
+
+/* Card Wrapper */
+.card {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+h4 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+/* Form Elements */
+.form-label {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.form-control {
+  border-radius: 6px;
+  padding: 0.5rem 0.75rem;
+  font-size: 14px;
+  border: 1px solid #ced4da;
+  background-color: #f9f9f9;
+}
+
+textarea.form-control {
+  resize: vertical;
+}
+
+/* Checkbox Styling */
+.form-check-input {
+  width: 16px;
+  height: 16px;
+  margin-right: 0.5rem;
+}
+
+.form-check-label {
+  font-weight: 400;
+  color: #333;
+}
+
+/* Error Message */
+.text-danger {
+  font-size: 13px;
+  margin-top: 0.25rem;
+  color: #e53935;
+}
+
+/* Submit Button */
+button[type="submit"] {
+  padding: 8px 16px;
+  font-size: 14px;
+  border-radius: 6px;
+  font-weight: 500;
+}
+
+button[disabled] {
+  opacity: 0.7;
+  cursor: not-allowed;
+}

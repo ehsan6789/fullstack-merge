@@ -1,0 +1,120 @@
+// src/styles/custom.scss
+
+// 🔸 Variables
+$primary: #0d6efd;
+$danger: #dc3545;
+$success: #198754;
+$gray-light: #f8f9fa;
+$border-radius: 0.5rem;
+$box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+
+// ==============================
+// 🔸 Reusable Card
+// ==============================
+.card-style {
+  padding: 1.5rem;
+  border-radius: $border-radius;
+  box-shadow: $box-shadow;
+  background-color: white;
+}
+
+// ==============================
+// 🔸 Page Title
+// ==============================
+.page-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #343a40;
+  margin-bottom: 1rem;
+}
+
+// ==============================
+// 🔸 Buttons
+// ==============================
+.btn-edit {
+  background-color: $primary;
+  color: white;
+  padding: 6px 12px;
+  border-radius: $border-radius;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-delete {
+  background-color: $danger;
+  color: white;
+  padding: 6px 12px;
+  border-radius: $border-radius;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-save {
+  background-color: $success;
+  color: white;
+  padding: 10px 20px;
+  border-radius: $border-radius;
+  font-weight: 500;
+  font-size: 15px;
+  border: none;
+  cursor: pointer;
+}
+
+// ==============================
+// 🔸 Table
+// ==============================
+.table-style {
+  width: 100%;
+  border-collapse: collapse;
+  thead {
+    background-color: $gray-light;
+  }
+  th,
+  td {
+    padding: 0.75rem;
+    border: 1px solid #dee2e6;
+    text-align: left;
+    font-size: 14px;
+  }
+}
+
+// ==============================
+// 🔸 Form Controls
+// ==============================
+.form-label {
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.form-control-custom {
+  border-radius: $border-radius;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #ced4da;
+  width: 100%;
+  font-size: 14px;
+}
+
+.form-check-input {
+  margin-top: 0.3rem;
+  margin-right: 0.5rem;
+}
+
+// ==============================
+// 🔸 Form Layout
+// ==============================
+.form-wrapper {
+  background-color: white;
+  border-radius: $border-radius;
+  padding: 2rem;
+  box-shadow: $box-shadow;
+  max-width: 600px;
+  margin: auto;
+}
+
+.form-error {
+  font-size: 0.85rem;
+  color: $danger;
+  margin-top: 0.25rem;
+}

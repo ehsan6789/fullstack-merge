@@ -1,0 +1,93 @@
+/* Card Container */
+:host {
+  display: block;
+  padding: 1.5rem;
+}
+
+.card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* Heading */
+h2 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+/* Add Button Link */
+a[routerLink="/assets/add"] {
+  display: inline-block;
+  margin-bottom: 1rem;
+  background-color: #28a745;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+a[routerLink="/assets/add"]:hover {
+  background-color: #218838;
+}
+
+/* Table Styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  margin-top: 0.5rem;
+}
+
+thead {
+  background-color: #f4f6f8;
+}
+
+th, td {
+  padding: 12px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+th {
+  font-weight: 600;
+  color: #555;
+}
+
+td {
+  color: #333;
+}
+
+/* Action Buttons */
+td a,
+td button {
+  font-size: 13px;
+  padding: 6px 10px;
+  border-radius: 4px;
+  margin-right: 6px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+}
+
+td a {
+  background-color: #007bff;
+  color: white;
+}
+
+td a:hover {
+  background-color: #0056b3;
+}
+
+td button {
+  background-color: #dc3545;
+  color: white;
+}
+
+td button:hover {
+  background-color: #c82333;
+}

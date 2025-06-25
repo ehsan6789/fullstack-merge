@@ -1,0 +1,71 @@
+<div class="card-style">
+  <h5 class="mb-3">Edit Maintenance Record</h5>
+
+  <form [formGroup]="recordForm" (ngSubmit)="update()">
+    <!-- ✅ Asset Dropdown -->
+    <div class="mb-3">
+      <label for="assetId" class="form-label">Asset</label>
+      <select
+        id="assetId"
+        formControlName="assetId"
+        class="form-control form-control-custom"
+      >
+        <option [value]="''" disabled>Select Asset...</option>
+        <option *ngFor="let asset of assets" [value]="asset.id">
+          {{ asset.name }}
+        </option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="maintenanceDate" class="form-label">Maintenance Date</label>
+      <input
+        id="maintenanceDate"
+        type="date"
+        formControlName="maintenanceDate"
+        class="form-control form-control-custom"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="description" class="form-label">Description</label>
+      <textarea
+        id="description"
+        formControlName="description"
+        class="form-control form-control-custom"
+        rows="3"
+      ></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label for="technicianName" class="form-label">Technician Name</label>
+      <input
+        id="technicianName"
+        type="text"
+        formControlName="technicianName"
+        class="form-control form-control-custom"
+        placeholder="Enter technician name"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="cost" class="form-label">Cost</label>
+      <input
+        id="cost"
+        type="number"
+        formControlName="cost"
+        class="form-control form-control-custom"
+        placeholder="Enter cost"
+      />
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="recordForm.invalid">
+      Update
+    </button>
+    <button type="button" class="btn btn-secondary ms-2" routerLink="/maintenance-records">
+      Cancel
+    </button>
+  </form>
+</div>
+
+

@@ -1,0 +1,75 @@
+<div class="card shadow-lg rounded-4 p-4 mt-4 border-0">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h4 class="text-primary fw-bold m-0">User Management</h4>
+    <button class="btn btn-primary d-flex align-items-center gap-2 px-4 rounded-pill shadow-sm" routerLink="/users/add">
+      <i class="bi bi-plus-circle"></i> Add User
+    </button>
+  </div>
+
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <input type="text" class="form-control w-50" placeholder="Search by name or email..." [(ngModel)]="searchTerm"
+      (ngModelChange)="currentPage = 1" />
+
+    <select class="form-select w-25" [(ngModel)]="roleFilter" (change)="currentPage = 1">
+      <option value="">All Roles</option>
+      <option *ngFor="let role of roles" [value]="role">{{ role }}</option>
+    </select>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-hover table-striped table-bordered align-middle text-center">
+      <thead class="table-primary text-black fw-bold">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Role</th>
+          <th scope="col">Status</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let user of paginatedUsers; let i = index">
+          <td>{{ (currentPage - 1) * itemsPerPage + i + 1 }}</td>
+          <td>{{ user.firstName }} {{ user.lastName }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.role }}</td>
+          <td>
+            <button class="btn btn-sm" [ngClass]="user.isActive ? 'btn-success' : 'btn-secondary'"
+              (click)="toggleStatus(user)">
+              {{ user.isActive ? 'Active' : 'Inactive' }}
+            </button>
+          </td>
+          <!-- <td>
+            <button class="btn btn-warning btn-sm me-2" (click)="editUser(user.id)">Edit</button>
+            <button class="btn btn-danger btn-sm" (click)="deleteUser(user.id)">Delete</button>
+          </td> -->
+          <td class="action-cell text-center">
+            <i class="bi bi-pencil me-3 cursor-pointer edit-icon" title="Edit" (click)="editUser(user.id)">
+            </i>
+            <i class="bi bi-trash cursor-pointer delete-icon" title="Delete" (click)="deleteUser(user.id)">
+            </i>
+          </td>
+
+        </tr>
+
+        <tr *ngIf="filteredUsers.length === 0">
+          <td colspan="6" class="text-center text-muted py-4">No users found.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="d-flex justify-content-center mt-3">
+      <button class="btn btn-outline-primary me-2" [disabled]="currentPage === 1" (click)="prevPage()">
+        ‹ Prev
+      </button>
+      <span class="align-self-center mx-2">
+        Page {{ currentPage }} of {{ Math.ceil(filteredUsers.length / itemsPerPage) }}
+      </span>
+      <button class="btn btn-outline-primary ms-2" [disabled]="!hasMorePages()" (click)="nextPage()">
+        Next ›
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,48 @@
+<div class="card-style">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h4 class="text-primary fw-bold m-0">Maintenance Records</h4>
+    <button class="btn btn-primary mb-3" routerLink="/maintenance-records/add">
+      <i class="bi bi-plus-circle"></i> Add Record
+    </button>
+  </div>
+
+  <table class="table-style">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Assets</th>
+        <th>Description</th>
+        <th>Date</th>
+        <th>Cost</th>
+        <th style="min-width: 150px;">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let record of records | paginate: { itemsPerPage: pageSize, currentPage: currentPage }; let i = index">
+        <td>{{ (currentPage - 1) * pageSize + i + 1 }}</td>
+        <td>{{ record.assetName }}</td>
+        <td>{{ record.description }}</td>
+        <td>{{ record.maintenanceDate | date: 'mediumDate' }}</td>
+        <td>{{ record.cost | currency:'USD':'symbol' }}</td>
+        <td>
+          <i class="bi bi-pencil-square text-primary me-3 clickable-icon"
+             (click)="editRecord(record.id)"
+             title="Edit Record"></i>
+          <i class="bi bi-trash text-danger clickable-icon"
+             (click)="deleteRecord(record.id)"
+             title="Delete Record"></i>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="records.length === 0" class="alert alert-warning text-center mt-3">
+    No maintenance records found.
+  </div>
+
+  <!-- Pagination Controls -->
+  <pagination-controls
+    (pageChange)="onPageChange($event)"
+    class="my-3 d-flex justify-content-center">
+  </pagination-controls>
+</div>

@@ -1,0 +1,39 @@
+<div class="card-style">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h5 class="mb-0">Categories</h5>
+    <button class="btn btn-primary" [routerLink]="['/categories/add']">Add New Category</button>
+  </div>
+
+  <table class="table-style">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th style="width: 150px;">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let category of categories | paginate: { itemsPerPage: pageSize, currentPage: currentPage }; let i = index">
+        <td>{{ (currentPage - 1) * pageSize + i + 1 }}</td>
+        <td>{{ category.name }}</td>
+        <td>
+          <i class="bi bi-pencil-square text-primary me-2 clickable-icon"
+             (click)="editCategory(category.id)"
+             title="Edit"></i>
+          <i class="bi bi-trash text-danger clickable-icon"
+             (click)="deleteCategory(category.id)"
+             title="Delete"></i>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="categories.length === 0" class="alert alert-warning text-center mt-3">
+    No categories found.
+  </div>
+
+  <pagination-controls
+    (pageChange)="onPageChange($event)"
+    class="my-3 d-flex justify-content-center">
+  </pagination-controls>
+</div>
